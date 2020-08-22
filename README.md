@@ -21,6 +21,8 @@ ar rcs libpq.a pq.o
 gcc proc_pq.o -L./ -lpq -o proc_pq
 ```
 
+Everything can be compiled at once using **make** command alone, because **makefile** has **all** target.
+
 Run:
 ```bash
 $ ./proc_pq numbers.txt

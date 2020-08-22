@@ -1,4 +1,10 @@
-default: proc_pq
+all: cprint proc_pq
+
+cprint.o: cprint.c
+	gcc -c cprint.c
+
+cprint: cprint.o
+	gcc cprint.o -o cprint
 
 pq.o: pq.c pq.h
 	gcc -c $<
