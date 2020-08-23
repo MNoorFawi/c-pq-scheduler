@@ -1,22 +1,25 @@
+sc = ./source_code/
+
 all: cprint proc_pq
 
 cprint.o: cprint.c
-	gcc -c cprint.c
+	gcc -c $^
 
 cprint: cprint.o
-	gcc cprint.o -o cprint
+	gcc $^ -o $@
 
-pq.o: pq.c pq.h
+pq.o: $(sc)pq.c $(sc)pq.h
 	gcc -c $<
 
-proc_pq.o: proc_pq.c pq.h
-	gcc -c proc_pq.c
+proc_pq.o: proc_pq.c $(sc)pq.h
+	gcc -c $<
 
 libpq.a: pq.o
-	ar rcs $@ $^
-    
+	$(shell mkdir -p ./lib)
+	ar rcs ./lib/$@ $^
+
 proc_pq: proc_pq.o libpq.a
-	gcc proc_pq.o -L./ -lpq -o proc_pq
+	gcc $< -L./lib -lpq -o $@
 
 clean:
 	rm *.o *.a

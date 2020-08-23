@@ -1,27 +1,25 @@
 # Using C priority queue library to execute scripts in different languages
 
-#### Runnig C, Python and R scripts using a priority queue developed in C. The queue will accept tasks from user input and execute them based on their priorities.
+#### Runnig C, Python and R scripts using a priority queue library developed in C. The queue will accept tasks from user input and execute them based on their priorities.
 
 Compile:
-1) first the C script
-```bash
-$  gcc cprint.c -o cprint
-```
-2) the program that uses the priority queue library
-```bash
-$ make proc_pq
 
+All compilation steps are in the **Makefile** so we just need to run one command:
+```bash
+$ make
+
+gcc -c cprint.c
+gcc cprint.o -o cprint
 gcc -c proc_pq.c
 proc_pq.c: In function ‘main’:
-proc_pq.c:73:11: warning: implicit declaration of function ‘waitpid’ [-Wimplicit-function-declaration]
-   73 |           waitpid(pid, & status, 0);
-      |           ^~~~~~~
-gcc -c pq.c
-ar rcs libpq.a pq.o
-gcc proc_pq.o -L./ -lpq -o proc_pq
+proc_pq.c:101:25: warning: implicit declaration of function ‘waitpid’ [-Wimplicit-function-declaration]
+  101 |                         waitpid(pid, & status, 0);
+      |                         ^~~~~~~
+gcc -c source_code/pq.c
+ar rcs ./lib/libpq.a pq.o
+gcc proc_pq.o -L./lib -lpq -o proc_pq
+$
 ```
-
-Everything can be compiled at once using **make** command alone, because **makefile** has **all** target.
 
 Run:
 ```bash

@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <string.h>
-#include "pq.h"
+#include "./source_code/pq.h"
 
 char process[STRLEN], language[STRLEN], proc[STRLEN]; // global
 
@@ -31,7 +31,8 @@ void is_exe(char * script, char * lang) {
         strcpy(lang, "exe");
 }
 
-void assign_language(void( * assign)(char * , char * )) { // pass a function as an argument
+// pass a function as an argument (function pointer)
+void assign_language(void( * assign)(char * , char * )) {
     assign(process, language);
     // or assign(&process, &language);
 }
@@ -68,14 +69,7 @@ int main(int argc, char ** argv) {
                 //memset(process, 0, sizeof(process));
                 strcat(process, proc); // concats everything in arg1
 
-                //if (strstr(process, ".py")) {
-                //  strcpy(language, "python");
-                //} else if (strstr(process, ".R")) {
-                //  strcpy(language, "Rscript");
-                //} else {
-                //  strcpy(language, "exe");
-                //}
-
+                // function pointer
                 assign_language(is_python);
                 assign_language(is_r);
                 assign_language(is_exe);
