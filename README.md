@@ -11,10 +11,6 @@ $ make
 gcc -c cprint.c
 gcc cprint.o -o cprint
 gcc -c proc_pq.c
-proc_pq.c: In function ‘main’:
-proc_pq.c:101:25: warning: implicit declaration of function ‘waitpid’ [-Wimplicit-function-declaration]
-  101 |                         waitpid(pid, & status, 0);
-      |                         ^~~~~~~
 gcc -c source_code/pq.c
 ar rcs ./lib/libpq.a pq.o
 gcc proc_pq.o -L./lib -lpq -o proc_pq
