@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 #include "./source_code/pq.h"
 
 char process[STRLEN], language[STRLEN], proc[STRLEN]; // global
